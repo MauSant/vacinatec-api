@@ -1,0 +1,18 @@
+# ADR 6: Proposta de taticas para garantir a disponibilidade
+Para garantir o atributo de disponibilidade propomos as táticas de log e Monitoração ping/pong.
+O log é para ser realizado por todo o código, assim cada chamada de método deve ser logada.
+Utilizaremos 5 niveis de Log (debug, info, warning, error e critical). O log de debug é feito
+para os próprios desenvolvedores realizarem o debug do código enquanto o sistema estiver
+em produção. log.Info é referente  a ações importantes que foram realizadas como a eliminação
+de usuário do banco de dados. log.warning é utilizado quando um erro no tratado aconteceu e  
+o sistema pode continuar a funcionar. log.error() é quando acontece um erro que já existe um 
+tratamento implementado. Por fim log.critical é quando ocorre alguma situação em que o 
+sistema precisa ser fechado.
+O ping/pong é utlizado no módulo de monitoramento para. Quando não acaontece resposta, uma 
+mensagem é enviada para servidores DNS desabilitarem a rota para o servidor que não respondeu e
+se possível retrasmitir as requests para outros ervidor em funcionamento.
+
+## Decisão
+A proposta foi aceita por garantir maior disponibilidade para o projeto.
+## Status: Suplantado
+## Consequências
